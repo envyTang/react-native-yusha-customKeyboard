@@ -95,7 +95,7 @@ class Keyboard extends PureComponent {
         return (
             <TouchableHighlight
                 key={index}
-                underlayColor={BG_COLOR}
+                underlayColor={'#fff'}
                 style={keyStyle.wrapper}
                 onPress={this._onPress.bind(this, key.mainText)}
             >
