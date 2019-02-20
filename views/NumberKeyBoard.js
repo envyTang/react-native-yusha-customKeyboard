@@ -12,21 +12,54 @@ import styles, {
 
 import InteractionManager from '../HFInteractionManager'
 
-const numberKeys = [
+let by = function(name,minor){
+    return function(o,p){
+        var a,b;
+        if(o && p && typeof o === 'object' && typeof p ==='object'){
+            a = o[name];
+            b = p[name];
+            if(a === b){
+                return typeof minor === 'function' ? minor(o,p):0;
+            }
+            if(typeof a === typeof b){
+                return a < b ? -1:1;
+            }
+            return typeof a < typeof b ? -1 : 1;
+        }else{
+            thro("error");
+        }
+    }
+}
+
+let arrayAll = [
+    { mainText: '1', otherText: '', order: Math.random()},
+    { mainText: '2', otherText: 'ABC', order: Math.random()},
+    { mainText: '3', otherText: 'DEF', order: Math.random() },
+    { mainText: '4', otherText: 'GHI', order: Math.random() },
+    { mainText: '5', otherText: 'JKL', order: Math.random() },
+    { mainText: '6', otherText: 'MNO', order: Math.random() },
+    { mainText: '7', otherText: 'PQRS', order: Math.random() },
+    { mainText: '8', otherText: 'TUV', order: Math.random() },
+    { mainText: '9', otherText: 'WXYZ', order: Math.random() }
+];
+
+arrayAll.sort(by('order',by('mainText')));
+
+let numberKeys = [
     [
-        { mainText: '1', otherText: '' },
-        { mainText: '2', otherText: 'ABC' },
-        { mainText: '3', otherText: 'DEF' }
+        arrayAll[0],
+        arrayAll[1],
+        arrayAll[2]
     ],
     [
-        { mainText: '4', otherText: 'GHI' },
-        { mainText: '5', otherText: 'JKL' },
-        { mainText: '6', otherText: 'MNO' }
+        arrayAll[3],
+        arrayAll[4],
+        arrayAll[5]
     ],
     [
-        { mainText: '7', otherText: 'PQRS' },
-        { mainText: '8', otherText: 'TUV' },
-        { mainText: '9', otherText: 'WXYZ' }
+        arrayAll[6],
+        arrayAll[7],
+        arrayAll[8]
     ]
 ];
 
